@@ -4,5 +4,10 @@ Rails.application.routes.draw do
   resources :authors
   resources :books
 
-  get 'api/v1/authors' => 'api/v1/authors#index'
+  # get 'api/v1/authors' => 'api/v1/authors#index'
+  namespace :api do
+    namespace :v1 do
+      resources :authors, only: :index
+    end
+  end
 end
