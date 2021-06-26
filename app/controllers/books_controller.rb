@@ -43,26 +43,27 @@ class BooksController < ApplicationController
   end
 
   private
-    def set_book
-      @book = Book.find(params[:id])
-    end
+  
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
-    def set_authors
-      @authors = Author.all
-    end
+  def set_authors
+    @authors = Author.all
+  end
 
-    def add_authors
-      book_author_ids.each do |author_id|
-        next unless author_id.to_i > 0
-        @book.author_ids = author_id
-      end
+  def add_authors
+    book_author_ids.each do |author_id|
+      next unless author_id.to_i > 0
+      @book.author_ids = author_id
     end
+  end
 
-    def book_author_ids
-      params[:book_authors][:author_ids]
-    end
+  def book_author_ids
+    params[:book_authors][:author_ids]
+  end
 
-    def book_params
-      params.require(:book).permit(:title)
-    end
+  def book_params
+    params.require(:book).permit(:title)
+  end
 end
